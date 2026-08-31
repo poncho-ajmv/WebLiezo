@@ -1,0 +1,12 @@
+# Generado
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Maquetas de diseño (borradores)
+_mockup/
+
+# Sistema
+.DS_Store
