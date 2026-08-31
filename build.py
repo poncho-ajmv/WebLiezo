@@ -84,7 +84,7 @@ def pagina(lang):
     pre = '' if lang == 'en' else '../'
     url = BASE + ('/' if lang == 'en' else '/es/')
     otro_href, otro_lang, otro_txt = t['lang_other']
-    auto = ("if(/^es/i.test(navigator.language||'')) location.replace('es/');"
+    auto = ("if(!localStorage.getItem('lienzo.lang')&&/^es/i.test(navigator.language||'')) location.replace('es/');"
             ) if lang == 'en' else ''
     inicio = TEMAS[0]
 
@@ -164,6 +164,11 @@ def pagina(lang):
       {nav}
     </nav>
     <div class="right">
+      <div class="lang">
+        <span class="on">{e(t['lang_code'])}</span>
+        <a href="{otro_href}" hreflang="{otro_lang}" lang="{otro_lang}"
+           onclick="try{{localStorage.setItem('lienzo.lang','{otro_lang}')}}catch(e){{}}">{e(otro_txt)}</a>
+      </div>
       <button class="ctl" id="mode" aria-label="{e(t['mode_label'])}" aria-pressed="false">
         <span class="i-moon">{icons.svg(icons.MOON)}</span><span class="i-sun">{icons.svg(icons.SUN)}</span>
       </button>

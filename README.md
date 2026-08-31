@@ -1,6 +1,16 @@
 # WebLienzo
 
-Este repositorio es el **sitio web** del proyecto [Lienzo](https://github.com/poncho-ajmv/Lienzo) — un Paint libre para Windows, Linux y macOS. Es un sitio estático bilingüe (español / inglés) que genera un script de Python — sin dependencias, sin build tools, sin runtime. Los enlaces de descarga y el historial de versiones salen en vivo del último release de GitHub, así que publicar una versión nueva no obliga a tocar el sitio.
+Este repositorio contiene únicamente el **sitio web oficial** de
+[Lienzo](https://github.com/poncho-ajmv/Lienzo), un Paint libre para Windows,
+Linux y macOS. El código de la aplicación de escritorio vive en el repositorio
+[poncho-ajmv/Lienzo](https://github.com/poncho-ajmv/Lienzo).
+
+**Sitio publicado:** [lienzo.surge.sh](https://lienzo.surge.sh/)
+
+Es un sitio estático bilingüe (español e inglés) generado por un script de
+Python, sin dependencias ni runtime. Los enlaces de descarga y el historial de
+versiones se consultan directamente desde los releases de Lienzo en GitHub, por
+lo que una versión nueva aparece sin modificar este repositorio.
 
 ---
 
@@ -12,7 +22,7 @@ cd WebLiezo
 
 ./probar.sh          # construye dist/ y lo abre en el navegador
 python3 build.py     # solo construir -> dist/
-npx surge dist       # publicar en surge.sh
+npx surge dist lienzo.surge.sh  # publicar manualmente en el dominio oficial
 ```
 
 `probar.sh` corre `build.py` y sirve `dist/` en `http://localhost:8000` (inglés) y `/es/` (español).
@@ -21,7 +31,7 @@ npx surge dist       # publicar en surge.sh
 |---|---|
 | `python3 build.py` | Genera `dist/`: las dos páginas y los estáticos. |
 | `./probar.sh` | Construye y sirve en local. |
-| `npx surge dist` | Sube `dist/` a surge.sh. |
+| `npx surge dist lienzo.surge.sh` | Publica manualmente en el dominio oficial. |
 
 Para cambiar textos, temas o enlaces se toca **solo `contenido.py`**.
 
@@ -120,7 +130,7 @@ WebLienzo/
 │   ├── styles.css    Estilos; la paleta sale del logo
 │   ├── app.js        Lapiz, temas, descargas en vivo, deteccion de idioma
 │   ├── img/          Logo y las veinte capturas (-l claro, -d oscuro)
-│   └── fonts/        Instrument Sans e IBM Plex Mono, autoalojadas
+│   └── fonts/        Instrument Sans y Silkscreen, autoalojadas
 └── dist/             Generado (gitignored)
 ```
 
@@ -142,9 +152,21 @@ El sitio se genera en inglés (`/`) y español (`/es/`). La raíz detecta el idi
 
 **Local:** `./probar.sh`
 
-**Producción (surge):** `npx surge dist tu-dominio.surge.sh`
+**Producción manual:** `python3 build.py && npx surge dist lienzo.surge.sh`
 
-**Producción (GitHub Pages):** una GitHub Action que corra `python3 build.py` y publique `dist/`.
+**Producción automática:** [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+construye y publica el sitio en Surge después de cada `push` a `main`. También
+se puede ejecutar manualmente desde la pestaña Actions.
+
+El repositorio de GitHub necesita un secreto de Actions llamado `SURGE_TOKEN`.
+Para limitarlo únicamente a este sitio, se puede crear con:
+
+```bash
+npx surge tokens add --domain lienzo.surge.sh -m "github actions"
+```
+
+El valor devuelto se guarda en **Settings → Secrets and variables → Actions →
+New repository secret** con el nombre `SURGE_TOKEN`.
 
 ---
 
@@ -156,10 +178,7 @@ El sitio se genera en inglés (`/`) y español (`/es/`). La raíz detecta el idi
 - Descargas y historial de versiones en vivo desde el último release de GitHub.
 - Lápiz sobre toda la página, temas claro/oscuro y veinte capturas.
 - Detección automática del idioma del navegador.
-
-**Pendiente**
-
-1. Publicación automática desde GitHub (Action de Pages o surge).
+- Publicación automática en Surge mediante GitHub Actions.
 
 ---
 

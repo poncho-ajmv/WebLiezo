@@ -33,7 +33,7 @@ INSTRUMENTOS = {
   ('formas', 'Part of the shape gallery: lines, rectangles, arrows, stars, speech bubbles', 'Seventy-three shapes',
    'Every one draws its own icon from the same list of points it draws with. Nine brushes, outline and fill.'),
   ('colores', 'The color palette, with a row of custom slots', 'Colors and files',
-   'The full palette plus ten slots of your own. Opens and saves PNG, JPEG, BMP, GIF, TIFF and ICO.'),
+   'The full palette plus ten slots of your own. Opens PNG, JPEG, BMP, GIF, TIFF and ICO; saves every format except ICO.'),
  ],
  'es': [
   ('tools', 'El grupo de herramientas: lápiz, relleno, texto, borrador, línea, lupa y el selector de pinceles', 'Herramientas',
@@ -41,7 +41,7 @@ INSTRUMENTOS = {
   ('formas', 'Parte de la galería de formas: líneas, rectángulos, flechas, estrellas, globos de diálogo', 'Setenta y tres formas',
    'Cada una dibuja su icono con la misma lista de puntos con la que dibuja. Nueve pinceles, contorno y relleno.'),
   ('colores', 'La paleta de colores, con la fila de espacios propios', 'Colores y archivos',
-   'La paleta completa más diez espacios propios. Abre y guarda PNG, JPEG, BMP, GIF, TIFF e ICO.'),
+   'La paleta completa más diez espacios propios. Abre PNG, JPEG, BMP, GIF, TIFF e ICO; guarda todos excepto ICO.'),
  ],
 }
 
